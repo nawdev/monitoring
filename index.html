@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monitoring Request</title>
+  <title>Monitoring JSON Request</title>
 </head>
 <body>
 
-  <h1>Monitoring Request to Server</h1>
-  <div id="monitoringResult"></div>
+  <h1>Monitoring JSON Request to Server</h1>
+  <pre id="monitoringResult"></pre>
 
   <script>
     // Fungsi untuk membuat permintaan ke server
     function makeRequest() {
       fetch('https://ai-putu.vercel.app/')
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-          // Menampilkan hasil di elemen dengan id "monitoringResult"
-          document.getElementById('monitoringResult').innerText = data;
+          // Menampilkan hasil JSON di elemen dengan id "monitoringResult"
+          document.getElementById('monitoringResult').innerText = JSON.stringify(data, null, 2);
         })
         .catch(error => {
           console.error('Error making request:', error.message);
