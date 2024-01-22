@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring Request</title>
+</head>
+<body>
+
+  <h1>Monitoring Request to Server</h1>
+  <div id="monitoringResult"></div>
+
+  <script>
+    // Fungsi untuk membuat permintaan ke server
+    function makeRequest() {
+      fetch('https://ai-putu.vercel.app/')
+        .then(response => response.text())
+        .then(data => {
+          // Menampilkan hasil di elemen dengan id "monitoringResult"
+          document.getElementById('monitoringResult').innerText = data;
+        })
+        .catch(error => {
+          console.error('Error making request:', error.message);
+          document.getElementById('monitoringResult').innerText = 'Error making request';
+        });
+    }
+
+    // Fungsi untuk membuat permintaan setiap 1 detik
+    function sendRequestsEverySecond() {
+      setInterval(() => {
+        makeRequest();
+      }, 1000); // 1000 milidetik sama dengan 1 detik
+    }
+
+    // Panggil fungsi untuk memulai permintaan setiap 1 detik
+    sendRequestsEverySecond();
+  </script>
+
+</body>
+</html>
